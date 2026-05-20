@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SPMB SMKN 1 Bunga Mayang</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:#f5f5f5;
+  overflow-x:hidden;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+  width:100%;
+  min-height:100vh;
+  background:linear-gradient(to bottom,#ffffff,#f6f6f6);
+  position:relative;
+  overflow:hidden;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.bg-top{
+  position:absolute;
+  top:-100px;
+  left:-100px;
+  width:350px;
+  height:350px;
+  background:rgba(255,0,0,0.05);
+  clip-path:polygon(50% 0%,0% 100%,100% 100%);
+}
+
+.bg-bottom{
+  position:absolute;
+  right:-120px;
+  bottom:-120px;
+  width:350px;
+  height:350px;
+  border-radius:50%;
+  background:rgba(255,0,0,0.05);
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+  width:100%;
+  max-width:1400px;
+  margin:auto;
+  padding:20px;
+  position:relative;
+  z-index:2;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo-area{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.logo-area img{
+  height:55px;
+  object-fit:contain;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.title{
+  text-align:center;
+  margin-top:10px;
+}
+
+.title h2{
+  font-size:22px;
+  font-weight:700;
+  color:#111;
+}
+
+.title h1{
+  font-size:58px;
+  font-weight:800;
+  color:#e00000;
+  line-height:1.1;
+  margin-top:5px;
+}
+
+.title h3{
+  font-size:24px;
+  font-weight:700;
+  margin-top:5px;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:40px;
+  margin-top:25px;
+  flex-wrap:wrap;
+}
+
+/* =========================
+   LEFT IMAGE
+========================= */
+
+.left-img{
+  width:100%;
+  max-width:420px;
+}
+
+.left-img img{
+  width:100%;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card{
+  width:100%;
+  max-width:520px;
+  background:white;
+  border-radius:25px;
+  padding:30px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.badge{
+  width:max-content;
+  margin:auto;
+  background:#e00000;
+  color:white;
+  padding:10px 25px;
+  border-radius:12px;
+  font-size:24px;
+  font-weight:700;
+}
+
+.card-title{
+  text-align:center;
+  margin-top:20px;
+}
+
+.card-title h2{
+  font-size:28px;
+  font-weight:700;
+}
+
+.card-title p{
+  font-size:18px;
+  font-weight:600;
+}
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+.countdown-box{
+  margin-top:25px;
+  background:#fff7f7;
+  padding:20px;
+  border-radius:20px;
+  border:1px solid #ffd6d6;
+}
+
+.countdown-box h3{
+  text-align:center;
+  color:#e00000;
+  margin-bottom:20px;
+}
+
+.countdown{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.time{
+  background:white;
+  border-radius:14px;
+  padding:15px 5px;
+  text-align:center;
+  box-shadow:0 3px 10px rgba(0,0,0,0.05);
+}
+
+.time h1{
+  font-size:40px;
+  color:#e00000;
+  font-weight:800;
+}
+
+.time span{
+  font-size:13px;
+  color:#666;
+  font-weight:600;
+}
+
+.schedule{
+  margin-top:20px;
+  padding-top:15px;
+  border-top:2px dashed #ffbcbc;
+  text-align:center;
+}
+
+.schedule h2{
+  font-size:34px;
+  color:#e00000;
+  font-weight:800;
+}
+
+.schedule p{
+  font-size:18px;
+  font-weight:600;
+}
+
+/* =========================
+   RESULT
+========================= */
+
+.result-area{
+  margin-top:25px;
+  display:none;
+}
+
+.result-area.active{
+  display:block;
+}
+
+.result-area p{
+  text-align:center;
+  font-size:15px;
+}
+
+.input-group{
+  position:relative;
+  margin-top:15px;
+}
+
+.input-group i{
+  position:absolute;
+  left:15px;
+  top:18px;
+  color:#666;
+}
+
+.input-group input{
+  width:100%;
+  height:55px;
+  border-radius:12px;
+  border:1px solid #ccc;
+  padding-left:45px;
+  font-size:16px;
+  outline:none;
+}
+
+.btn{
+  width:100%;
+  height:55px;
+  border:none;
+  background:#e00000;
+  color:white;
+  font-size:18px;
+  font-weight:700;
+  border-radius:12px;
+  margin-top:18px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:#b60000;
+}
+
+.result{
+  margin-top:20px;
+  padding:20px;
+  border-radius:15px;
+  text-align:center;
+  display:none;
+}
+
+.lulus{
+  background:#eaffea;
+  border:2px solid #2cb34b;
+  color:#157626;
+}
+
+.tidak{
+  background:#fff0f0;
+  border:2px solid #ff3b3b;
+  color:#d10000;
+}
+
+/* =========================
+   ADMIN
+========================= */
+
+.admin-btn{
+  position:fixed;
+  top:15px;
+  right:15px;
+  z-index:999;
+}
+
+.admin-btn button{
+  background:#111;
+  color:white;
+  border:none;
+  padding:10px 15px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.admin-panel{
+  position:fixed;
+  top:0;
+  right:-400px;
+  width:320px;
+  height:100vh;
+  background:white;
+  box-shadow:-5px 0 20px rgba(0,0,0,0.1);
+  padding:25px;
+  transition:0.4s;
+  z-index:1000;
+  overflow:auto;
+}
+
+.admin-panel.active{
+  right:0;
+}
+
+.admin-panel h2{
+  margin-bottom:15px;
+}
+
+.admin-panel input{
+  width:100%;
+  height:50px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  padding:10px;
+  margin-bottom:15px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  margin-top:40px;
+  background:#d60000;
+  color:white;
+  text-align:center;
+  padding:15px;
+  font-size:14px;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media(max-width:992px){
+
+  .title h1{
+    font-size:42px;
+  }
+
+  .content{
+    gap:20px;
+  }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .main{
+    padding:15px;
+  }
+
+  .logo-area img{
+    height:42px;
+  }
+
+  .title h2{
+    font-size:15px;
+  }
+
+  .title h1{
+    font-size:30px;
+  }
+
+  .title h3{
+    font-size:16px;
+  }
+
+  .content{
+    margin-top:15px;
+    gap:15px;
+  }
+
+  .left-img{
+    max-width:240px;
+  }
+
+  .card{
+    padding:18px;
+    border-radius:20px;
+  }
+
+  .badge{
+    font-size:15px;
+    padding:10px 16px;
+  }
+
+  .card-title h2{
+    font-size:20px;
+  }
+
+  .card-title p{
+    font-size:14px;
+  }
+
+  .countdown{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .time h1{
+    font-size:28px;
+  }
+
+  .schedule h2{
+    font-size:24px;
+  }
+
+  .schedule p{
+    font-size:14px;
+  }
+
+  .input-group input{
+    height:50px;
+    font-size:14px;
+  }
+
+  .btn{
+    height:50px;
+    font-size:15px;
+  }
+
+  .admin-panel{
+    width:100%;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="bg-top"></div>
+<div class="bg-bottom"></div>
+
+<!-- ADMIN BUTTON -->
+<div class="admin-btn">
+  <button onclick="openAdmin()">
+    <i class="fa fa-user-shield"></i> Admin
+  </button>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin-panel" id="adminPanel">
+
+  <h2>Login Admin</h2>
+
+  <input type="text" id="user" placeholder="Username">
+  <input type="password" id="pass" placeholder="Password">
+
+  <button class="btn" onclick="loginAdmin()">
+    Login
+  </button>
+
+  <div id="settingArea" style="display:none; margin-top:25px;">
+
+    <h2>Pengaturan Jadwal</h2>
+
+    <input type="datetime-local" id="newDate">
+
+    <button class="btn" onclick="saveDate()">
+      Simpan Jadwal
+    </button>
+
+    <hr style="margin:25px 0">
+
+    <h2>Google Spreadsheet</h2>
+
+    <input type="text" id="sheetUrl"
+    placeholder="Masukkan URL Spreadsheet">
+
+    <button class="btn" onclick="saveSheet()">
+      Simpan Spreadsheet
+    </button>
+
+  </div>
+
+</div>
+
+<div class="main">
+
+<!-- LOGO -->
+<div class="logo-area">
+
+  <!-- GANTI DENGAN LOGO -->
+  <img src="logo1.png">
+  <img src="logo2.png">
+  <img src="logo2.png">
+  <img src="logo2.png">
+
+</div>
+
+<!-- TITLE -->
+<div class="title">
+
+  <h2>SISTEM PENERIMAAN MURID BARU</h2>
+
+  <h1>SMK NEGERI 1 BUNGA MAYANG</h1>
+
+  <h3>TAHUN PELAJARAN 2026 - 2027</h3>
+
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- LEFT IMAGE -->
+  <div class="left-img">
+
+    <!-- GANTI DENGAN GAMBAR SISWA -->
+    <img src="https://drive.google.com/file/d/1txx_48-lfR48n1i6Ac9APSozvqmJzHZF/view?usp=sharing">
+
+  </div>
+
+  <!-- CARD -->
+  <div class="card">
+
+    <div class="badge">
+      PENGUMUMAN HASIL SPMB
+    </div>
+
+    <div class="card-title">
+
+      <h2>SPMB SMKN 1 BUNGA MAYANG</h2>
+
+      <p>TAHUN PELAJARAN 2026 - 2027</p>
+
+    </div>
+
+    <!-- COUNTDOWN -->
+    <div id="countdownSection">
+
+      <div class="countdown-box">
+
+        <h3>PENGUMUMAN AKAN DIBUKA DALAM :</h3>
+
+        <div class="countdown">
+
+          <div class="time">
+            <h1 id="days">00</h1>
+            <span>HARI</span>
+          </div>
+
+          <div class="time">
+            <h1 id="hours">00</h1>
+            <span>JAM</span>
+          </div>
+
+          <div class="time">
+            <h1 id="minutes">00</h1>
+            <span>MENIT</span>
+          </div>
+
+          <div class="time">
+            <h1 id="seconds">00</h1>
+            <span>DETIK</span>
+          </div>
+
+        </div>
+
+        <div class="schedule">
+
+          <p>Tanggal Pengumuman</p>
+
+          <h2>03 JUNI 2026</h2>
+
+          <p>PUKUL 10.00 WIB</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RESULT -->
+    <div class="result-area" id="resultArea">
+
+      <p>
+        Masukkan NISN Anda untuk melihat hasil SPMB
+      </p>
+
+      <div class="input-group">
+
+        <i class="fa fa-user"></i>
+
+        <input type="text" id="nisn"
+        placeholder="Masukkan NISN Anda">
+
+      </div>
+
+      <button class="btn"
+      onclick="cekKelulusan()">
+
+        <i class="fa fa-search"></i>
+        CEK HASIL SPMB
+
+      </button>
+
+      <div id="hasil" class="result"></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 SMKN 1 Bunga Mayang
+</footer>
+
+</div>
+
+<script>
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+let targetDate =
+localStorage.getItem("jadwalPengumuman")
+|| "2026-06-03T10:00:00";
+
+function updateCountdown(){
+
+  const now = new Date().getTime();
+
+  const target = new Date(targetDate).getTime();
+
+  const distance = target - now;
+
+  if(distance <= 0){
+
+    document.getElementById("countdownSection")
+    .style.display = "none";
+
+    document.getElementById("resultArea")
+    .classList.add("active");
+
+    return;
+  }
+
+  const days =
+  Math.floor(distance / (1000*60*60*24));
+
+  const hours =
+  Math.floor((distance %
+  (1000*60*60*24)) /
+  (1000*60*60));
+
+  const minutes =
+  Math.floor((distance %
+  (1000*60*60)) /
+  (1000*60));
+
+  const seconds =
+  Math.floor((distance %
+  (1000*60)) / 1000);
+
+  document.getElementById("days").innerHTML = days;
+  document.getElementById("hours").innerHTML = hours;
+  document.getElementById("minutes").innerHTML = minutes;
+  document.getElementById("seconds").innerHTML = seconds;
+
+}
+
+setInterval(updateCountdown,1000);
+
+updateCountdown();
+
+/* =========================
+   ADMIN
+========================= */
+
+function openAdmin(){
+
+  document.getElementById("adminPanel")
+  .classList.toggle("active");
+
+}
+
+function loginAdmin(){
+
+  let user =
+  document.getElementById("user").value;
+
+  let pass =
+  document.getElementById("pass").value;
+
+  if(user === "admin"
+  && pass === "admin123"){
+
+    alert("Login Berhasil");
+
+    document.getElementById("settingArea")
+    .style.display = "block";
+
+  }else{
+
+    alert("Username atau Password Salah");
+
+  }
+
+}
+
+/* =========================
+   SAVE DATE
+========================= */
+
+function saveDate(){
+
+  let date =
+  document.getElementById("newDate").value;
+
+  localStorage.setItem(
+  "jadwalPengumuman",date);
+
+  alert("Jadwal Disimpan");
+
+  location.reload();
+
+}
+
+/* =========================
+   SAVE SHEET
+========================= */
+
+function saveSheet(){
+
+  let url =
+  document.getElementById("sheetUrl").value;
+
+  localStorage.setItem(
+  "sheetURL",url);
+
+  alert("Spreadsheet Disimpan");
+
+}
+
+/* =========================
+   CEK KELULUSAN
+========================= */
+
+async function cekKelulusan(){
+
+  const nisn =
+  document.getElementById("nisn").value;
+
+  const resultBox =
+  document.getElementById("hasil");
+
+  const sheetURL =
+  localStorage.getItem("sheetURL");
+
+  if(!sheetURL){
+
+    alert("Spreadsheet belum diatur");
+
+    return;
+  }
+
+  try{
+
+    const response =
+    await fetch(sheetURL);
+
+    const data =
+    await response.json();
+
+    const siswa =
+    data.find(item =>
+    item.NISN == nisn);
+
+    resultBox.style.display="block";
+
+    if(siswa){
+
+      if(siswa.STATUS
+      .toUpperCase() === "LULUS"){
+
+        resultBox.className =
+        "result lulus";
+
+        resultBox.innerHTML = `
+          <h2>SELAMAT ANDA DITERIMA</h2>
+          <br>
+          <p><b>Nama :</b> ${siswa.NAMA}</p>
+          <p><b>NISN :</b> ${siswa.NISN}</p>
+          <p><b>Jurusan :</b> ${siswa.JURUSAN}</p>
+        `;
+
+      }else{
+
+        resultBox.className =
+        "result tidak";
+
+        resultBox.innerHTML = `
+          <h2>MOHON MAAF</h2>
+          <br>
+          <p>Anda belum dinyatakan lulus.</p>
+        `;
+
+      }
+
+    }else{
+
+      resultBox.className =
+      "result tidak";
+
+      resultBox.innerHTML = `
+        <h2>DATA TIDAK DITEMUKAN</h2>
+      `;
+
+    }
+
+  }catch(err){
+
+    alert("Gagal mengambil data");
+
+    console.log(err);
+
+  }
+
+}
+
+</script>
+
+</body>
+</html>
