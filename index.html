@@ -102,7 +102,7 @@ width:100%;
 
 .card{
 width:100%;
-max-width:500px;
+max-width:520px;
 background:white;
 padding:30px;
 border-radius:25px;
@@ -194,6 +194,7 @@ padding:15px;
 border-radius:12px;
 border:1px solid #ccc;
 font-size:16px;
+outline:none;
 }
 
 .btn{
@@ -213,11 +214,12 @@ cursor:pointer;
 margin-top:20px;
 padding:20px;
 border-radius:15px;
-text-align:center;
+text-align:left;
 display:none;
+line-height:1.8;
 }
 
-.lulus{
+.diterima{
 background:#eaffea;
 border:2px solid green;
 color:green;
@@ -227,6 +229,11 @@ color:green;
 background:#fff0f0;
 border:2px solid red;
 color:red;
+}
+
+.result h2{
+text-align:center;
+margin-bottom:15px;
 }
 
 /* FOOTER */
@@ -297,6 +304,8 @@ font-size:28px;
 <!-- LOGO -->
 <div class="logo">
 
+<!-- GANTI SESUAI LINK GITHUB -->
+
 <img src="https://raw.githubusercontent.com/smknbungamayang-keren/pengumuman-spmb/main/logo1.png">
 
 <img src="https://raw.githubusercontent.com/smknbungamayang-keren/pengumuman-spmb/main/logo2.png">
@@ -304,6 +313,7 @@ font-size:28px;
 <img src="https://raw.githubusercontent.com/smknbungamayang-keren/pengumuman-spmb/main/logo3.png">
 
 <img src="https://raw.githubusercontent.com/smknbungamayang-keren/pengumuman-spmb/main/logo4.png">
+
 </div>
 
 <!-- TITLE -->
@@ -334,7 +344,7 @@ PENGUMUMAN KELULUSAN
 
 <div class="card-title">
 
-<h2>SPMB SMKN 1 Bunga Mayang</h2>
+<h2>SPMB SMKN 1 BUNGA MAYANG</h2>
 
 <p>TAHUN PELAJARAN 2026 - 2027</p>
 
@@ -384,8 +394,8 @@ id="resultArea">
 <div class="input">
 
 <input type="text"
-id="nisn"
-placeholder="Masukkan NISN">
+id="keyword"
+placeholder="Masukkan NISN atau Nama">
 
 </div>
 
@@ -413,10 +423,16 @@ class="result"></div>
 
 <script>
 
+/* =========================
+   SPREADSHEET ID
+========================= */
+
 const spreadsheetID =
 "1_5kYMUilnKPlLP7Y4y3Vo4zse2wgdNMYwSKEd4TdJRs";
 
-/* SHEET URLs */
+/* =========================
+   URL SHEET
+========================= */
 
 const siswaURL =
 `https://opensheet.elk.sh/${spreadsheetID}/siswa`;
@@ -426,13 +442,15 @@ const settingURL =
 
 let siswaData = [];
 
-/* LOAD DATA */
+/* =========================
+   LOAD DATA
+========================= */
 
 async function loadData(){
 
 try{
 
-/* SISWA */
+/* DATA SISWA */
 
 const siswaRes =
 await fetch(siswaURL);
@@ -440,7 +458,7 @@ await fetch(siswaURL);
 siswaData =
 await siswaRes.json();
 
-/* SETTING */
+/* DATA SETTING */
 
 const settingRes =
 await fetch(settingURL);
@@ -458,13 +476,15 @@ startCountdown(tanggal);
 
 console.log(err);
 
-alert("Gagal mengambil data");
+alert("Gagal mengambil data spreadsheet");
 
 }
 
 }
 
-/* COUNTDOWN */
+/* =========================
+   COUNTDOWN
+========================= */
 
 function startCountdown(date){
 
@@ -531,64 +551,151 @@ updateCountdown();
 
 }
 
-/* CEK KELULUSAN */
+/* =========================
+   CEK KELULUSAN
+========================= */
 
 function cekKelulusan(){
 
-const nisn =
-document.getElementById("nisn").value;
+const keyword =
+document.getElementById("keyword")
+.value
+.toLowerCase()
+.trim();
 
 const resultBox =
 document.getElementById("hasil");
 
+/* CARI BERDASARKAN NISN ATAU NAMA */
+
 const siswa =
 siswaData.find(item =>
-item.nisn == nisn);
+
+item.nisn.toLowerCase()
+.includes(keyword)
+
+||
+
+item.nama.toLowerCase()
+.includes(keyword)
+
+);
 
 resultBox.style.display="block";
 
+/* JIKA DATA DITEMUKAN */
+
 if(siswa){
 
+/* DITERIMA */
+
 if(siswa.status
-.toUpperCase() === "LULUS"){
+.toUpperCase() ===
+"DITERIMA"){
 
 resultBox.className =
-"result lulus";
+"result diterima";
 
 resultBox.innerHTML = `
-<h2>SELAMAT ANDA LULUS</h2>
+
+<h2>
+SELAMAT ANDA DITERIMA
+</h2>
+
+<p>
+<b>Nama :</b>
+${siswa.nama}
+</p>
+
+<p>
+<b>NISN :</b>
+${siswa.nisn}
+</p>
+
+<p>
+<b>Asal Sekolah :</b>
+${siswa.asal_sekolah}
+</p>
+
+<p>
+<b>Jurusan :</b>
+${siswa.jurusan}
+</p>
+
+<p>
+<b>Status :</b>
+${siswa.status}
+</p>
+
+`;
+
+}else{
+
+/* TIDAK DITERIMA */
+
+resultBox.className =
+"result tidak";
+
+resultBox.innerHTML = `
+
+<h2>
+MOHON MAAF
+</h2>
+
+<p>
+Anda dinyatakan
+TIDAK DITERIMA
+di SMKN 1 Bunga Mayang
+</p>
+
 <br>
-<p><b>Nama :</b> ${siswa.nama}</p>
-<p><b>NISN :</b> ${siswa.nisn}</p>
-<p><b>Jurusan :</b> ${siswa.jurusan}</p>
+
+<p>
+<b>Nama :</b>
+${siswa.nama}
+</p>
+
+<p>
+<b>NISN :</b>
+${siswa.nisn}
+</p>
+
+<p>
+<b>Asal Sekolah :</b>
+${siswa.asal_sekolah}
+</p>
+
 `;
 
+}
+
 }else{
+
+/* DATA TIDAK ADA */
 
 resultBox.className =
 "result tidak";
 
 resultBox.innerHTML = `
-<h2>MOHON MAAF</h2>
-<p>Anda belum dinyatakan lulus</p>
+
+<h2>
+DATA TIDAK DITEMUKAN
+</h2>
+
+<p>
+Periksa kembali
+Nama atau NISN Anda
+</p>
+
 `;
 
 }
 
-}else{
-
-resultBox.className =
-"result tidak";
-
-resultBox.innerHTML = `
-<h2>DATA TIDAK DITEMUKAN</h2>
-`;
-
 }
 
-}
-
-/* LOAD */
+/* =========================
+   LOAD
+========================= */
 
 loadData();
 
