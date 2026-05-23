@@ -297,8 +297,6 @@ font-size:28px;
 <!-- LOGO -->
 <div class="logo">
 
-<!-- GANTI DENGAN LINK GAMBAR -->
-
 <img src="https://raw.githubusercontent.com/USERNAME/REPO/main/logo1.png">
 
 <img src="https://raw.githubusercontent.com/USERNAME/REPO/main/logo2.png">
@@ -335,7 +333,7 @@ PENGUMUMAN KELULUSAN
 
 <div class="card-title">
 
-<h2>SPMB SMKN 1 BUNGA MAYANG</h2>
+<h2>SPMB SMKN 1 Bunga Mayang</h2>
 
 <p>TAHUN PELAJARAN 2026 - 2027</p>
 
@@ -414,30 +412,46 @@ class="result"></div>
 
 <script>
 
-const apiURL =
-"https://script.google.com/macros/s/ISI_URL_APPS_SCRIPT/exec";
+const spreadsheetID =
+"ISI_ID_SPREADSHEET";
+
+/* SHEET URLs */
+
+const siswaURL =
+`https://opensheet.elk.sh/${spreadsheetID}/siswa`;
+
+const settingURL =
+`https://opensheet.elk.sh/${spreadsheetID}/setting`;
 
 let siswaData = [];
 
-/* AMBIL DATA */
+/* LOAD DATA */
 
 async function loadData(){
 
 try{
 
-const response =
-await fetch(apiURL);
+/* SISWA */
 
-const data =
-await response.json();
+const siswaRes =
+await fetch(siswaURL);
 
-siswaData = data.siswa;
+siswaData =
+await siswaRes.json();
 
-const pengumuman =
-data.setting[0]
+/* SETTING */
+
+const settingRes =
+await fetch(settingURL);
+
+const settingData =
+await settingRes.json();
+
+const tanggal =
+settingData[0]
 .tanggal_pengumuman;
 
-startCountdown(pengumuman);
+startCountdown(tanggal);
 
 }catch(err){
 
@@ -573,7 +587,7 @@ resultBox.innerHTML = `
 
 }
 
-/* LOAD DATA */
+/* LOAD */
 
 loadData();
 
