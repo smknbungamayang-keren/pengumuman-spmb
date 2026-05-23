@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>Pengumuman SPMB SMKN 1 Bunga Mayang</title>
+<title>
+Pengumuman SPMB SMKN 1 Bunga Mayang
+</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -26,136 +29,181 @@ overflow-x:hidden;
 .container{
 width:100%;
 min-height:100vh;
-background:linear-gradient(to bottom,#ffffff,#f5f5f5);
 padding:20px;
-display:flex;
-justify-content:center;
-align-items:center;
+background:
+linear-gradient(to bottom,#ffffff,#f5f5f5);
 }
 
-.card{
-width:100%;
-max-width:550px;
-background:white;
-padding:30px;
-border-radius:30px;
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
-animation:fadeUp 1s ease;
+.main{
+max-width:1200px;
+margin:auto;
 }
 
-@keyframes fadeUp{
-
-from{
-opacity:0;
-transform:translateY(40px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
-
-}
+/* LOGO */
 
 .logo{
-text-align:center;
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
 }
 
 .logo img{
-width:90px;
-margin-bottom:15px;
+height:60px;
 }
+
+/* TITLE */
 
 .title{
 text-align:center;
+margin-top:15px;
+}
+
+.title h2{
+font-size:22px;
+font-weight:700;
 }
 
 .title h1{
-font-size:34px;
-color:#d90000;
+font-size:55px;
 font-weight:800;
-line-height:1.2;
+color:#e00000;
+line-height:1.1;
 }
 
-.title p{
+.title h3{
+font-size:22px;
 margin-top:5px;
-font-size:16px;
-font-weight:600;
 }
+
+/* CONTENT */
+
+.content{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:40px;
+margin-top:30px;
+flex-wrap:wrap;
+}
+
+/* IMAGE */
+
+.left{
+width:100%;
+max-width:400px;
+}
+
+.left img{
+width:100%;
+}
+
+/* CARD */
+
+.card{
+width:100%;
+max-width:500px;
+background:white;
+padding:30px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.badge{
+background:#e00000;
+color:white;
+padding:12px 25px;
+border-radius:12px;
+width:max-content;
+margin:auto;
+font-size:22px;
+font-weight:700;
+}
+
+.card-title{
+text-align:center;
+margin-top:20px;
+}
+
+.card-title h2{
+font-size:28px;
+}
+
+.card-title p{
+font-size:18px;
+}
+
+/* COUNTDOWN */
 
 .countdown-box{
 margin-top:25px;
 background:#fff7f7;
 padding:20px;
 border-radius:20px;
-border:1px solid #ffd5d5;
+border:1px solid #ffd8d8;
 }
 
 .countdown-box h3{
 text-align:center;
+color:#e00000;
 margin-bottom:20px;
-color:#d90000;
 }
 
 .countdown{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:10px;
+gap:12px;
 }
 
 .time{
 background:white;
-padding:15px 5px;
-border-radius:15px;
+padding:15px;
+border-radius:14px;
 text-align:center;
-box-shadow:0 3px 10px rgba(0,0,0,0.05);
 }
 
 .time h1{
-font-size:35px;
-color:#d90000;
-font-weight:800;
+font-size:40px;
+color:#e00000;
 }
 
 .time span{
 font-size:13px;
 font-weight:600;
-color:#666;
 }
 
-.search-area{
+/* RESULT */
+
+.result-area{
 display:none;
-margin-top:25px;
+margin-top:20px;
 }
 
-.search-area.active{
+.result-area.active{
 display:block;
 }
 
-.search-area p{
-text-align:center;
-font-size:14px;
-margin-bottom:15px;
+.input{
+margin-top:15px;
 }
 
-.input{
+.input input{
 width:100%;
 height:55px;
-border:1px solid #ccc;
+padding:15px;
 border-radius:12px;
-padding:0 15px;
+border:1px solid #ccc;
 font-size:16px;
-margin-bottom:15px;
-outline:none;
 }
 
 .btn{
 width:100%;
 height:55px;
+margin-top:15px;
 border:none;
-background:#d90000;
+background:#e00000;
 color:white;
-font-size:17px;
+font-size:18px;
 font-weight:700;
 border-radius:12px;
 cursor:pointer;
@@ -165,43 +213,66 @@ cursor:pointer;
 margin-top:20px;
 padding:20px;
 border-radius:15px;
-display:none;
 text-align:center;
+display:none;
 }
 
 .lulus{
-background:#ecffef;
-border:2px solid #2ab54a;
-color:#14752a;
+background:#eaffea;
+border:2px solid green;
+color:green;
 }
 
 .tidak{
 background:#fff0f0;
-border:2px solid #ff4040;
-color:#d00000;
+border:2px solid red;
+color:red;
 }
 
-.loading{
-background:#f5f5f5;
-border:1px solid #ddd;
-color:#555;
-}
+/* FOOTER */
 
 footer{
-margin-top:25px;
+margin-top:40px;
+background:#d60000;
+color:white;
+padding:15px;
 text-align:center;
-font-size:13px;
-color:#666;
 }
+
+/* MOBILE */
 
 @media(max-width:768px){
 
-.card{
-padding:20px;
+.title h1{
+font-size:30px;
 }
 
-.title h1{
-font-size:25px;
+.title h2{
+font-size:16px;
+}
+
+.title h3{
+font-size:15px;
+}
+
+.logo img{
+height:40px;
+}
+
+.left{
+max-width:220px;
+}
+
+.card{
+padding:18px;
+}
+
+.badge{
+font-size:14px;
+}
+
+.card-title h2{
+font-size:20px;
 }
 
 .countdown{
@@ -221,35 +292,62 @@ font-size:28px;
 
 <div class="container">
 
-<div class="card">
+<div class="main">
 
+<!-- LOGO -->
 <div class="logo">
 
-<!-- GANTI LOGO -->
-<img src="logo.png">
+<!-- GANTI DENGAN LINK GAMBAR -->
+
+<img src="https://raw.githubusercontent.com/USERNAME/REPO/main/logo1.png">
+
+<img src="https://raw.githubusercontent.com/USERNAME/REPO/main/logo2.png">
+
+<img src="https://raw.githubusercontent.com/USERNAME/REPO/main/logo3.png">
 
 </div>
 
+<!-- TITLE -->
 <div class="title">
 
-<h1>PENGUMUMAN SPMB</h1>
+<h2>SISTEM PENERIMAAN MURID BARU</h2>
 
-<p>
-SMK NEGERI 1 BUNGA MAYANG
-</p>
+<h1>SMK NEGERI 1 BUNGA MAYANG</h1>
 
-<p>
-TAHUN PELAJARAN 2026/2027
-</p>
+<h3>TAHUN PELAJARAN 2026 - 2027</h3>
+
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+<div class="left">
+
+<img src="https://raw.githubusercontent.com/USERNAME/REPO/main/siswa.png">
+
+</div>
+
+<div class="card">
+
+<div class="badge">
+PENGUMUMAN KELULUSAN
+</div>
+
+<div class="card-title">
+
+<h2>SPMB SMKN 1 BUNGA MAYANG</h2>
+
+<p>TAHUN PELAJARAN 2026 - 2027</p>
 
 </div>
 
 <!-- COUNTDOWN -->
-<div id="countdownSection"
-class="countdown-box">
+<div id="countdownSection">
+
+<div class="countdown-box">
 
 <h3>
-PENGUMUMAN AKAN DIBUKA DALAM
+PENGUMUMAN AKAN DIBUKA DALAM :
 </h3>
 
 <div class="countdown">
@@ -278,28 +376,33 @@ PENGUMUMAN AKAN DIBUKA DALAM
 
 </div>
 
-<!-- SEARCH -->
-<div class="search-area"
-id="searchArea">
+</div>
 
-<p>
-Masukkan NISN atau Nama
-</p>
+<!-- RESULT -->
+<div class="result-area"
+id="resultArea">
+
+<div class="input">
 
 <input type="text"
-id="keyword"
-class="input"
-placeholder="Masukkan NISN atau Nama">
+id="nisn"
+placeholder="Masukkan NISN">
+
+</div>
 
 <button class="btn"
 onclick="cekKelulusan()">
 
-CEK HASIL
+CEK HASIL KELULUSAN
 
 </button>
 
 <div id="hasil"
 class="result"></div>
+
+</div>
+
+</div>
 
 </div>
 
@@ -309,82 +412,66 @@ class="result"></div>
 
 </div>
 
-</div>
-
 <script>
 
-// =====================
-// GANTI DENGAN URL APPS SCRIPT
-// =====================
+const apiURL =
+"https://script.google.com/macros/s/ISI_URL_APPS_SCRIPT/exec";
 
-const API_URL =
-"https://script.google.com/macros/s/AKfycbxxxxxx/exec";
+let siswaData = [];
 
-let semuaData = [];
-
-let tanggalPengumuman = "";
-
-// =====================
-// LOAD DATA
-// =====================
+/* AMBIL DATA */
 
 async function loadData(){
 
 try{
 
-const res =
-await fetch(API_URL);
+const response =
+await fetch(apiURL);
 
-const json =
-await res.json();
+const data =
+await response.json();
 
-semuaData = json.data;
+siswaData = data.siswa;
 
-tanggalPengumuman =
-json.tanggal_pengumuman;
+const pengumuman =
+data.setting[0]
+.tanggal_pengumuman;
 
-startCountdown();
+startCountdown(pengumuman);
 
 }catch(err){
 
-alert("Gagal mengambil data");
-
 console.log(err);
 
-}
+alert("Gagal mengambil data");
 
 }
 
-loadData();
+}
 
-// =====================
-// COUNTDOWN
-// =====================
+/* COUNTDOWN */
 
-function startCountdown(){
+function startCountdown(date){
 
-setInterval(()=>{
+const targetDate =
+new Date(date).getTime();
+
+function updateCountdown(){
 
 const now =
 new Date().getTime();
 
-const target =
-new Date(tanggalPengumuman)
-.getTime();
-
 const distance =
-target - now;
+targetDate - now;
 
 if(distance <= 0){
 
-document
-.getElementById(
+document.getElementById(
 "countdownSection")
-.style.display = "none";
+.style.display="none";
 
-document
-.getElementById(
-"searchArea")
+document.getElementById(
+"resultArea")
 .classList.add("active");
 
 return;
@@ -397,183 +484,98 @@ Math.floor(distance /
 
 const hours =
 Math.floor((distance %
-(1000*60*60*24))
-/ (1000*60*60));
+(1000*60*60*24)) /
+(1000*60*60));
 
 const minutes =
 Math.floor((distance %
-(1000*60*60))
-/ (1000*60));
+(1000*60*60)) /
+(1000*60));
 
 const seconds =
 Math.floor((distance %
-(1000*60))
-/ 1000);
+(1000*60)) / 1000);
 
-document
-.getElementById("days")
+document.getElementById("days")
 .innerHTML = days;
 
-document
-.getElementById("hours")
+document.getElementById("hours")
 .innerHTML = hours;
 
-document
-.getElementById("minutes")
+document.getElementById("minutes")
 .innerHTML = minutes;
 
-document
-.getElementById("seconds")
+document.getElementById("seconds")
 .innerHTML = seconds;
-
-},1000);
 
 }
 
-// =====================
-// CEK KELULUSAN
-// =====================
+setInterval(updateCountdown,1000);
+
+updateCountdown();
+
+}
+
+/* CEK KELULUSAN */
 
 function cekKelulusan(){
 
-const key =
-document
-.getElementById("keyword")
-.value
-.toLowerCase()
-.trim();
+const nisn =
+document.getElementById("nisn").value;
 
-const hasil =
-document
-.getElementById("hasil");
-
-if(key == ""){
-
-alert("Masukkan NISN atau Nama");
-
-return;
-
-}
-
-hasil.style.display="block";
-
-hasil.className =
-"result loading";
-
-hasil.innerHTML =
-"Sedang memproses...";
-
-setTimeout(()=>{
+const resultBox =
+document.getElementById("hasil");
 
 const siswa =
-semuaData.find(item =>
+siswaData.find(item =>
+item.nisn == nisn);
 
-String(item.NISN)
-.toLowerCase()
-.includes(key)
-
-||
-
-String(item.NAMA)
-.toLowerCase()
-.includes(key)
-
-);
+resultBox.style.display="block";
 
 if(siswa){
 
-if(String(siswa.STATUS)
-.toUpperCase()
-== "LULUS"){
+if(siswa.status
+.toUpperCase() === "LULUS"){
 
-hasil.className =
+resultBox.className =
 "result lulus";
 
-hasil.innerHTML = `
-
-<h2>
-🎉 SELAMAT 🎉
-</h2>
-
+resultBox.innerHTML = `
+<h2>SELAMAT ANDA LULUS</h2>
 <br>
-
-<h3>
-ANDA DINYATAKAN LULUS
-</h3>
-
-<br>
-
-<p>
-<b>Nama :</b>
-${siswa.NAMA}
-</p>
-
-<p>
-<b>NISN :</b>
-${siswa.NISN}
-</p>
-
-<p>
-<b>Jurusan :</b>
-${siswa.JURUSAN}
-</p>
-
+<p><b>Nama :</b> ${siswa.nama}</p>
+<p><b>NISN :</b> ${siswa.nisn}</p>
+<p><b>Jurusan :</b> ${siswa.jurusan}</p>
 `;
 
 }else{
 
-hasil.className =
+resultBox.className =
 "result tidak";
 
-hasil.innerHTML = `
-
-<h2>
-MOHON MAAF
-</h2>
-
-<br>
-
-<p>
-ANDA BELUM DINYATAKAN LULUS
-</p>
-
+resultBox.innerHTML = `
+<h2>MOHON MAAF</h2>
+<p>Anda belum dinyatakan lulus</p>
 `;
 
 }
 
 }else{
 
-hasil.className =
+resultBox.className =
 "result tidak";
 
-hasil.innerHTML = `
-
-<h2>
-DATA TIDAK DITEMUKAN
-</h2>
-
+resultBox.innerHTML = `
+<h2>DATA TIDAK DITEMUKAN</h2>
 `;
 
 }
 
-},800);
-
 }
 
-// ENTER
-document
-.getElementById("keyword")
-.addEventListener(
-"keypress",
-function(e){
+/* LOAD DATA */
 
-if(e.key === "Enter"){
-
-cekKelulusan();
-
-}
-
-});
+loadData();
 
 </script>
 
