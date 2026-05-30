@@ -293,6 +293,10 @@ font-size:28px;
 }
 
 </style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 </head>
 
 <body>
@@ -627,6 +631,11 @@ ${siswa.status}
 ${siswa.jurusan}
 </p>
 
+<button class="btn"
+onclick="downloadSurat('${siswa.nama}','${siswa.nisn}','${siswa.asal_sekolah}','${siswa.jurusan}')">
+DOWNLOAD SURAT KETERANGAN DITERIMA
+</button>
+
 `;
 
 }else{
@@ -696,6 +705,56 @@ Nama atau NISN Anda
 /* =========================
    LOAD
 ========================= */
+
+
+/* =========================
+   DOWNLOAD SURAT
+========================= */
+async function downloadSurat(nama,nisn,asalSekolah,jurusan){
+
+const { jsPDF } = window.jspdf;
+const doc = new jsPDF('portrait','mm','a4');
+
+// GANTI DENGAN URL LOGO GITHUB
+const logoUrl="ISI_URL_LOGO_SEKOLAH";
+
+// GANTI DENGAN URL TTD + CAP GITHUB
+const ttdUrl="ISI_URL_TTD_CAP_KEPSEK";
+
+doc.setFontSize(14);
+doc.text("SURAT KETERANGAN DITERIMA",105,20,{align:"center"});
+doc.setFontSize(11);
+doc.text("No : 870/132/SMKN1BM/2026",105,28,{align:"center"});
+
+doc.text(`Nama : ${nama}`,20,55);
+doc.text(`NISN : ${nisn}`,20,65);
+doc.text(`Asal Sekolah : ${asalSekolah}`,20,75);
+doc.text(`Program Keahlian : ${jurusan}`,20,85);
+
+doc.text("Dinyatakan DITERIMA sebagai peserta didik baru",20,105);
+doc.text("SMK Negeri 1 Bunga Mayang Tahun Pelajaran 2026/2027.",20,115);
+
+const qrDiv=document.createElement("div");
+new QRCode(qrDiv,{
+ text:`${nama}|${nisn}|${jurusan}`,
+ width:120,
+ height:120
+});
+
+await new Promise(r=>setTimeout(r,800));
+const qrImg=qrDiv.querySelector("img");
+if(qrImg){
+ doc.addImage(qrImg.src,"PNG",20,180,25,25);
+}
+
+doc.text("Bunga Mayang, 06 Juni 2026",130,185);
+doc.text("Kepala Sekolah",140,193);
+doc.text("Dr. H. Muhamad Kholil, M.Pd.I",120,235);
+doc.text("NIP. 197003231998031008",120,242);
+
+doc.save(`Surat_Diterima_${nama}.pdf`);
+}
+
 
 loadData();
 
