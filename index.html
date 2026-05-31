@@ -710,6 +710,26 @@ Nama atau NISN Anda
 /* =========================
    DOWNLOAD SURAT
 ========================= */
+async function getBase64Image(url){
+
+const response = await fetch(url);
+
+const blob = await response.blob();
+
+return new Promise((resolve)=>{
+
+const reader = new FileReader();
+
+reader.onloadend = () => {
+resolve(reader.result);
+};
+
+reader.readAsDataURL(blob);
+
+});
+
+}
+
 async function downloadSurat(nama,nisn,asalSekolah,jurusan){
 
 const { jsPDF } = window.jspdf;
@@ -720,7 +740,22 @@ const logoUrl="https://raw.githubusercontent.com/smknbungamayang-keren/pengumuma
 
 // GANTI DENGAN URL TTD + CAP GITHUB
 const ttdUrl="https://raw.githubusercontent.com/smknbungamayang-keren/pengumuman-spmb/main/ttd-removebg-preview.png";
+   
+const logoBase64 =
+await getBase64Image(logoUrl);
 
+const ttdBase64 =
+await getBase64Image(ttdUrl);
+
+doc.addImage(
+logoBase64,
+"PNG",
+15,
+10,
+22,
+22
+);
+   
 doc.setFontSize(14);
 doc.text("SURAT KETERANGAN DITERIMA",105,20,{align:"center"});
 doc.setFontSize(11);
@@ -749,6 +784,14 @@ if(qrImg){
 
 doc.text("Bunga Mayang, 06 Juni 2026",130,185);
 doc.text("Kepala Sekolah",140,193);
+doc.addImage(
+ttdBase64,
+"PNG",
+120,
+190,
+55,
+35
+);
 doc.text("Dr. H. Muhamad Kholil, M.Pd.I",120,235);
 doc.text("NIP. 197003231998031008",120,242);
 
