@@ -761,10 +761,25 @@ doc.text("SURAT KETERANGAN DITERIMA",105,50,{align:"center"});
 doc.setFontSize(11);
 doc.text("No : 870/132/SMKN1BM/2026",105,58,{align:"center"})
 
-doc.text(`Nama : ${nama}`,20,80);
-doc.text(`NISN : ${nisn}`,20,90);
-doc.text(`Asal Sekolah : ${asalSekolah}`,20,100);
-doc.text(`Program Keahlian : ${jurusan}`,20,110);
+const xLabel = 20;
+const xTitik = 60;
+const xIsi = 65;
+
+doc.text("Nama", xLabel, 80);
+doc.text(":", xTitik, 80);
+doc.text(nama, xIsi, 80);
+
+doc.text("NISN", xLabel, 90);
+doc.text(":", xTitik, 90);
+doc.text(nisn, xIsi, 90);
+
+doc.text("Asal Sekolah", xLabel, 100);
+doc.text(":", xTitik, 100);
+doc.text(asalSekolah, xIsi, 100);
+
+doc.text("Program Keahlian", xLabel, 110);
+doc.text(":", xTitik, 110);
+doc.text(jurusan, xIsi, 110);
 
 doc.text("Dinyatakan DITERIMA sebagai peserta didik baru",20,135);
 doc.text("SMK Negeri 1 Bunga Mayang Tahun Pelajaran 2026/2027.",20,145);
