@@ -801,24 +801,4 @@ ttdBase64,
 doc.text("Dr. H. Muhamad Kholil, M.Pd.I",120,235);
 doc.text("NIP. 197003231998031008",120,242);
 
-const pdfBlob = doc.output('blob');
-
-const link = document.createElement('a');
-link.href = URL.createObjectURL(pdfBlob);
-link.download = `Surat_Diterima_${nama}.pdf`;
-
-document.body.appendChild(link);
-link.click();
-document.body.removeChild(link);
-
-setTimeout(()=>{
- URL.revokeObjectURL(link.href);
-},1000);
-
-
-loadData();
-
-</script>
-
-</body>
-</html>
+doc.save(`Surat_Diterima_${nama}.pdf`);
