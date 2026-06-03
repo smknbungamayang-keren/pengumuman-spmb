@@ -626,8 +626,13 @@ ${siswa.asal_sekolah}
 ${siswa.status}
 </p>
 
+<p>
+<b>Jurusan :</b>
+${siswa.jurusan}
+</p>
+
 <button class="btn"
-onclick="downloadSurat('${siswa.nama}','${siswa.nisn}','${siswa.asal_sekolah}')">
+onclick="downloadSurat('${siswa.nama}','${siswa.nisn}','${siswa.asal_sekolah}','${siswa.jurusan}')">
 DOWNLOAD SURAT KETERANGAN DITERIMA
 </button>
 
@@ -725,7 +730,7 @@ reader.readAsDataURL(blob);
 
 }
 
-async function downloadSurat(nama,nisn,asalSekolah){
+async function downloadSurat(nama,nisn,asalSekolah,jurusan){
 
 const { jsPDF } = window.jspdf;
 const doc = new jsPDF('portrait','mm','a4');
@@ -772,12 +777,16 @@ doc.text("Asal Sekolah", xLabel, 100);
 doc.text(":", xTitik, 100);
 doc.text(asalSekolah, xIsi, 100);
 
+doc.text("Program Keahlian", xLabel, 110);
+doc.text(":", xTitik, 110);
+doc.text(jurusan, xIsi, 110);
+
 doc.text("Dinyatakan DITERIMA sebagai peserta didik baru",20,135);
 doc.text("SMK Negeri 1 Bunga Mayang Tahun Pelajaran 2026/2027.",20,145);
 
 const qrDiv=document.createElement("div");
 new QRCode(qrDiv,{
- text:`${nama}|${nisn}`,
+ text:`${nama}|${nisn}|${jurusan}`,
  width:120,
  height:120
 });
@@ -802,6 +811,8 @@ doc.text("Dr. H. Muhamad Kholil, M.Pd.I",120,235);
 doc.text("NIP. 197003231998031008",120,242);
 
 doc.save(`Surat_Diterima_${nama}.pdf`);
+}
+
 
 loadData();
 
