@@ -720,13 +720,8 @@ const blob = await response.blob();
 return await new Promise((resolve,reject)=>{
 
 const reader = new FileReader();
-
-reader.onloadend = ()=>{
-resolve(reader.result);
-};
-
+reader.onloadend = ()=>resolve(reader.result);
 reader.onerror = reject;
-
 reader.readAsDataURL(blob);
 
 });
@@ -734,30 +729,25 @@ reader.readAsDataURL(blob);
 }catch(err){
 
 console.error("Gagal memuat gambar:",url);
-
 return null;
 
 }
 
 }
 
+
 async function downloadSurat(nama,nisn,asalSekolah){
 
 try{
 
 const { jsPDF } = window.jspdf;
+const doc = new jsPDF({orientation:"portrait",unit:"mm",format:"a4"});
 
-const doc = new jsPDF({
-orientation:"portrait",
-unit:"mm",
-format:"a4"
-});
+const kopUrl="https://raw.githubusercontent.com/smknbungamayang-keren/pengumuman-spmb/main/kopsekolah.JPG";
+const ttdUrl="https://raw.githubusercontent.com/smknbungamayang-keren/pengumuman-spmb/main/ttd-cap-kepsek.png";
 
-const kopUrl ="https://raw.githubusercontent.com/smknbungamayang-keren/pengumuman-spmb/main/kopsekolah.JPG";
-const ttdUrl ="https://raw.githubusercontent.com/smknbungamayang-keren/pengumuman-spmb/main/ttd-cap-kepsek.png";
-
-const kopBase64 = await getBase64Image(kopUrl);
-const ttdBase64 = await getBase64Image(ttdUrl);
+const kopBase64=await getBase64Image(kopUrl);
+const ttdBase64=await getBase64Image(ttdUrl);
 
 if(kopBase64){
 doc.addImage(kopBase64,"JPEG",5,5,200,35);
@@ -766,8 +756,10 @@ doc.addImage(kopBase64,"JPEG",5,5,200,35);
 doc.setFont("times","bold");
 doc.setFontSize(14);
 doc.text("PENGUMUMAN",105,50,{align:"center"});
+
 doc.setFontSize(11);
 doc.text("No : 870/132/SMKN1BM/2026",105,57,{align:"center"});
+
 doc.setFontSize(14);
 doc.text("TENTANG",105,67,{align:"center"});
 doc.text("HASIL SELEKSI SISTEM PENERIMAAN MURID BARU (SPMB)",105,75,{align:"center"});
@@ -777,45 +769,55 @@ doc.text("TAHUN PELAJARAN 2026/2027",105,89,{align:"center"});
 doc.setFont("times","normal");
 doc.setFontSize(11);
 
-doc.text([
-"Berdasarkan hasil verifikasi dan seleksi berkas Sistem Penerimaan Murid Baru (SPMB)",
-"Jalur Afirmasi, Domisili dan Prestasi Tahun Pelajaran 2026/2027,",
-"maka peserta atas nama berikut :"
-],20,102);
+const isiSurat=`Berdasarkan hasil verifikasi dan seleksi berkas Sistem Penerimaan Murid Baru (SPMB) Jalur Afirmasi, Domisili dan Prestasi Tahun Pelajaran 2026/2027, maka peserta atas nama berikut :`;
 
-const xLabel=25;
-const xTitik=75;
-const xIsi=80;
+const splitText=doc.splitTextToSize(isiSurat,170);
+doc.text(splitText,20,102);
 
-doc.text("Nama",xLabel,120);
-doc.text(":",xTitik,120);
-doc.text(nama,xIsi,120);
+const xLabel=20;
+const xTitik=60;
+const xIsi=65;
 
-doc.text("NISN",xLabel,128);
-doc.text(":",xTitik,128);
-doc.text(nisn,xIsi,128);
+let y=125;
 
-doc.text("Asal Sekolah",xLabel,136);
-doc.text(":",xTitik,136);
-doc.text(asalSekolah,xIsi,136);
+doc.text("Nama",xLabel,y);
+doc.text(":",xTitik,y);
+doc.text(nama,xIsi,y);
+
+y+=8;
+
+doc.text("NISN",xLabel,y);
+doc.text(":",xTitik,y);
+doc.text(nisn,xIsi,y);
+
+y+=8;
+
+doc.text("Asal Sekolah",xLabel,y);
+doc.text(":",xTitik,y);
+
+const sekolahWrap=doc.splitTextToSize(asalSekolah,120);
+doc.text(sekolahWrap,xIsi,y);
+
+y+=15;
 
 doc.setFont("times","bold");
-doc.text("DITERIMA",80,152);
+doc.text("DINYATAKAN DITERIMA",20,y);
+
+y+=8;
 
 doc.setFont("times","normal");
-doc.text("sebagai peserta didik baru SMK Negeri 1 Bunga Mayang",20,160);
-doc.text("Tahun Pelajaran 2026/2027.",20,168);
+doc.text("Sebagai peserta didik baru SMK Negeri 1 Bunga Mayang",20,y);
+
+y+=7;
+
+doc.text("Tahun Pelajaran 2026/2027.",20,y);
 
 const qrContainer=document.createElement("div");
 qrContainer.style.position="fixed";
 qrContainer.style.left="-9999px";
 document.body.appendChild(qrContainer);
 
-new QRCode(qrContainer,{
-text:`${nama}|${nisn}`,
-width:150,
-height:150
-});
+new QRCode(qrContainer,{text:`${nama}|${nisn}`,width:150,height:150});
 
 await new Promise(resolve=>setTimeout(resolve,1000));
 
@@ -845,14 +847,11 @@ const safeNama=nama.replace(/[\\/:*?"<>|]/g,"_");
 doc.save(`Surat_Diterima_${safeNama}.pdf`);
 
 }catch(err){
-
 console.error(err);
 alert("Gagal membuat PDF. Silakan coba lagi.");
-
 }
 
 }
-
 
 
 loadData();
