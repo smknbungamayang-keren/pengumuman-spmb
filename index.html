@@ -706,48 +706,34 @@ Nama atau NISN Anda
 /* =========================
    DOWNLOAD SURAT
 ========================= */
-async function getBase64Image(url){
-
-try{
-
-const response = await fetch(url,{
-mode:"cors",
-cache:"no-cache"
-});
-
-const blob = await response.blob();
-
-return await new Promise((resolve,reject)=>{
-
-const reader = new FileReader();
-reader.onloadend = ()=>resolve(reader.result);
-reader.onerror = reject;
-reader.readAsDataURL(blob);
-
-});
-
-}catch(err){
-
-console.error("Gagal memuat gambar:",url);
-return null;
-
-}
-
-}
-
-
 async function downloadSurat(nama,nisn,asalSekolah){
 
 try{
 
 const { jsPDF } = window.jspdf;
-const doc = new jsPDF({orientation:"portrait",unit:"mm",format:"a4"});
+const doc = new jsPDF({
+orientation:"portrait",
+unit:"mm",
+format:"a4"
+});
 
-const kopUrl="https://raw.githubusercontent.com/smknbungamayang-keren/pengumuman-spmb/main/kopsekolah.JPG";
-const ttdUrl="https://raw.githubusercontent.com/smknbungamayang-keren/pengumuman-spmb/main/ttd-cap-kepsek.png";
+const kopUrl =
+"https://raw.githubusercontent.com/smknbungamayang-keren/pengumuman-spmb/main/kopsekolah.JPG";
 
-const kopBase64=await getBase64Image(kopUrl);
-const ttdBase64=await getBase64Image(ttdUrl);
+const ttdKepsekUrl =
+"https://raw.githubusercontent.com/smknbungamayang-keren/pengumuman-spmb/main/ttd-cap-kepsek.png";
+
+const ttdKetuaUrl =
+"https://raw.githubusercontent.com/smknbungamayang-keren/pengumuman-spmb/main/ttd-ketua-spmb.png";
+
+const kopBase64 =
+await getBase64Image(kopUrl);
+
+const ttdKepsekBase64 =
+await getBase64Image(ttdKepsekUrl);
+
+const ttdKetuaBase64 =
+await getBase64Image(ttdKetuaUrl);
 
 if(kopBase64){
 doc.addImage(kopBase64,"JPEG",5,5,200,35);
@@ -755,8 +741,8 @@ doc.addImage(kopBase64,"JPEG",5,5,200,35);
 
 doc.setFont("times","bold");
 doc.setFontSize(14);
-doc.text("PENGUMUMAN",105,50,{align:"center"});
 
+doc.text("PENGUMUMAN",105,50,{align:"center"});
 doc.setFontSize(11);
 doc.text("No : 870/132/SMKN1BM/2026",105,57,{align:"center"});
 
@@ -769,55 +755,63 @@ doc.text("TAHUN PELAJARAN 2026/2027",105,89,{align:"center"});
 doc.setFont("times","normal");
 doc.setFontSize(11);
 
-const isiSurat=`Berdasarkan hasil verifikasi dan seleksi berkas Sistem Penerimaan Murid Baru (SPMB) Jalur Afirmasi, Domisili dan Prestasi Tahun Pelajaran 2026/2027, maka peserta atas nama berikut :`;
+const isiSurat =
+"Berdasarkan hasil verifikasi dan seleksi berkas Sistem Penerimaan Murid Baru (SPMB) Jalur Afirmasi, Domisili dan Prestasi Tahun Pelajaran 2026/2027, maka peserta atas nama berikut :";
 
-const splitText=doc.splitTextToSize(isiSurat,170);
-doc.text(splitText,20,102);
+doc.text(
+doc.splitTextToSize(isiSurat,170),
+20,
+102
+);
 
-const xLabel=20;
-const xTitik=60;
-const xIsi=65;
+let y = 125;
 
-let y=125;
+doc.text("Nama",20,y);
+doc.text(":",60,y);
+doc.text(nama,65,y);
 
-doc.text("Nama",xLabel,y);
-doc.text(":",xTitik,y);
-doc.text(nama,xIsi,y);
+y += 8;
 
-y+=8;
+doc.text("NISN",20,y);
+doc.text(":",60,y);
+doc.text(nisn,65,y);
 
-doc.text("NISN",xLabel,y);
-doc.text(":",xTitik,y);
-doc.text(nisn,xIsi,y);
+y += 8;
 
-y+=8;
+doc.text("Asal Sekolah",20,y);
+doc.text(":",60,y);
 
-doc.text("Asal Sekolah",xLabel,y);
-doc.text(":",xTitik,y);
+doc.text(
+doc.splitTextToSize(asalSekolah,120),
+65,
+y
+);
 
-const sekolahWrap=doc.splitTextToSize(asalSekolah,120);
-doc.text(sekolahWrap,xIsi,y);
-
-y+=15;
+y += 18;
 
 doc.setFont("times","bold");
 doc.text("DINYATAKAN DITERIMA",20,y);
 
-y+=8;
+y += 8;
 
 doc.setFont("times","normal");
-doc.text("Sebagai peserta didik baru SMK Negeri 1 Bunga Mayang",20,y);
+doc.text(
+"Sebagai peserta didik baru SMK Negeri 1 Bunga Mayang",
+20,
+y
+);
 
-y+=7;
+y += 7;
 
-doc.text("Tahun Pelajaran 2026/2027.",20,y);
+doc.text(
+"Tahun Pelajaran 2026/2027.",
+20,
+y
+);
 
-/* ==========================
-   TEST KEJURUAN
-========================== */
+y += 15;
 
 doc.setFont("times","bold");
-
 doc.text(
 "INFORMASI PELAKSANAAN TEST KEJURUAN / MINAT DAN BAKAT",
 20,
@@ -828,116 +822,60 @@ y += 10;
 
 doc.setFont("times","normal");
 
-doc.text(
-"Hari / Tanggal",
-20,
-y
-);
-
-doc.text(
-": Senin, 08 Juni 2026",
-60,
-y
-);
+doc.text("Hari / Tanggal",20,y);
+doc.text(": Senin, 08 Juni 2026",60,y);
 
 y += 7;
 
-doc.text(
-"Waktu",
-20,
-y
-);
-
-doc.text(
-": 08.00 WIB s/d Selesai",
-60,
-y
-);
+doc.text("Waktu",20,y);
+doc.text(": 08.00 WIB s/d Selesai",60,y);
 
 y += 7;
 
-doc.text(
-"Tempat",
-20,
-y
-);
-
-doc.text(
-": SMK Negeri 1 Bunga Mayang",
-60,
-y
-);
+doc.text("Tempat",20,y);
+doc.text(": SMK Negeri 1 Bunga Mayang",60,y);
 
 y += 12;
 
-const info =
-"Demikian pengumuman ini disampaikan untuk diketahui dan dilaksanakan sebagaimana mestinya.";
-
 doc.text(
-doc.splitTextToSize(
-info,
-170
-),
+"Demikian pengumuman ini disampaikan untuk diketahui dan dilaksanakan sebagaimana mestinya.",
 20,
 y
 );
-
-/* ==========================
-   TANDA TANGAN
-========================== */
 
 const yTtd = 220;
 
 /* KEPALA SEKOLAH */
 
-doc.text(
-"Mengetahui,",
-25,
-yTtd
-);
-
-doc.text(
-"Kepala Sekolah",
-25,
-yTtd + 8
-);
+doc.text("Mengetahui,",25,yTtd);
+doc.text("Kepala Sekolah",25,yTtd+8);
 
 if(ttdKepsekBase64){
-
 doc.addImage(
 ttdKepsekBase64,
 "PNG",
 15,
-yTtd + 10,
+yTtd+10,
 45,
 30
 );
-
 }
 
-doc.setFont(
-"times",
-"bold"
-);
-
+doc.setFont("times","bold");
 doc.text(
 "Dr. H. Muhamad Kholil, M.Pd.I",
 15,
-yTtd + 50
+yTtd+50
 );
 
-doc.setFont(
-"times",
-"normal"
-);
-
+doc.setFont("times","normal");
 doc.text(
 "NIP. 197003231998031008",
 15,
-yTtd + 57
+yTtd+57
 );
 
-/* KETUA PELAKSANA SPMB */
+/* KETUA SPMB */
 
 doc.text(
 "Bunga Mayang, 06 Juni 2026",
@@ -948,65 +886,44 @@ yTtd
 doc.text(
 "Ketua Pelaksana SPMB",
 120,
-yTtd + 8
+yTtd+8
 );
 
 if(ttdKetuaBase64){
-
 doc.addImage(
 ttdKetuaBase64,
 "PNG",
 120,
-yTtd + 10,
+yTtd+10,
 45,
 30
 );
-
 }
 
-doc.setFont(
-"times",
-"bold"
-);
-
+doc.setFont("times","bold");
 doc.text(
 "Sumaryono, S.Pd.T",
 120,
-yTtd + 50
+yTtd+50
 );
 
-doc.setFont(
-"times",
-"normal"
-);
-
+doc.setFont("times","normal");
 doc.text(
 "NIP. 198606052022211039",
 120,
-yTtd + 57
+yTtd+57
 );
-
-/* ==========================
-   SIMPAN PDF
-========================== */
 
 const safeNama =
-nama.replace(
-(/[\\/:*?"<>|]/g),
-"_"
-);
+nama.replace(/[\\/:*?"<>|]/g,"_");
 
-doc.save(
-`Surat_Diterima_${safeNama}.pdf`
-);
+doc.save(`Surat_Diterima_${safeNama}.pdf`);
 
 }catch(err){
 
 console.error(err);
 
-alert(
-"Gagal membuat PDF. Silakan coba lagi."
-);
+alert("Gagal membuat PDF. Silakan coba lagi.");
 
 }
 
