@@ -767,25 +767,29 @@ doc.setFontSize(14);
 doc.text("SMK NEGERI 1 BUNGA MAYANG",105,83,{align:"center"});
 doc.setFontSize(14);
 doc.text("TAHUN PELAJARAN 2026/2027",105,88,{align:"center"});
+
+doc.setFontSize(14);
+doc.text("Berdasarkan hasil verifikasi dan seleksi berkas Sistem Penerimaan Murid Baru (SPMB) Jalur Afirmasi, Domisili, dan Prestasi Tahun Pelajaran 2026/2027, 
+         maka peserta atas nama berikut :",105,98,{align:"center"});
    
 const xLabel = 20;
-const xTitik = 60;
-const xIsi = 65;
+const xTitik = 108;
+const xIsi = 113;
 
-doc.text("Nama", xLabel, 80);
-doc.text(":", xTitik, 80);
-doc.text(nama, xIsi, 80);
+doc.text("Nama", xLabel, 118);
+doc.text(":", xTitik, 118);
+doc.text(nama, xIsi, 118);
 
-doc.text("NISN", xLabel, 90);
-doc.text(":", xTitik, 90);
-doc.text(nisn, xIsi, 90);
+doc.text("NISN", xLabel, 123);
+doc.text(":", xTitik, 123);
+doc.text(nisn, xIsi, 123);
 
-doc.text("Asal Sekolah", xLabel, 100);
-doc.text(":", xTitik, 100);
-doc.text(asalSekolah, xIsi, 100);
+doc.text("Asal Sekolah", xLabel, 128);
+doc.text(":", xTitik, 128);
+doc.text(asalSekolah, xIsi, 128);
 
-doc.text("Dinyatakan DITERIMA sebagai peserta didik baru",20,135);
-doc.text("SMK Negeri 1 Bunga Mayang Tahun Pelajaran 2026/2027.",20,145);
+doc.text("Dinyatakan DITERIMA sebagai peserta didik baru",20,138);
+doc.text("SMK Negeri 1 Bunga Mayang Tahun Pelajaran 2026/2027.",20,143);
 
 const qrDiv=document.createElement("div");
 new QRCode(qrDiv,{
