@@ -570,6 +570,16 @@ document.getElementById("keyword")
 const resultBox =
 document.getElementById("hasil");
 
+if(!Array.isArray(siswaData)){
+    resultBox.style.display="block";
+    resultBox.className="result tidak";
+    resultBox.innerHTML=`
+        <h2>DATA BELUM TERMUAT</h2>
+        <p>Periksa koneksi atau spreadsheet Anda.</p>
+    `;
+    return;
+}
+
 /* CARI BERDASARKAN NISN ATAU NAMA */
 
 const siswa =
