@@ -843,9 +843,9 @@ y
 
 y += 15;
 
-doc.setFont("times","bold");
+doc.setFont("times");
 doc.text(
-"INFORMASI PELAKSANAAN TEST KEJURUAN / MINAT DAN BAKAT",
+"Kepada peserta yang dinyatakan diterima diwajibkan untuk mengikuti Test minat dan bakat / Test kejuruan yang akan dilaksanakan pada :",
 20,
 y
 );
@@ -875,75 +875,78 @@ doc.text(
 y
 );
 
-const yTtd = 220;
+if (y > 190) {
+    doc.addPage();
+    y = 30;
+}
+
+const yTtd = y + 15;
 
 /* KEPALA SEKOLAH */
-
-doc.text("Mengetahui,",25,yTtd);
-doc.text("Kepala Sekolah",25,yTtd+8);
+doc.text("Mengetahui,",30,yTtd);
+doc.text("Kepala Sekolah",30,yTtd+8);
 
 if(ttdKepsekBase64){
-doc.addImage(
-ttdKepsekBase64,
-"PNG",
-15,
-yTtd+10,
-45,
-30
-);
+    doc.addImage(
+        ttdKepsekBase64,
+        "PNG",
+        20,
+        yTtd+12,
+        40,
+        28
+    );
 }
 
 doc.setFont("times","bold");
 doc.text(
-"Dr. H. Muhamad Kholil, M.Pd.I",
-15,
-yTtd+50
+    "Dr. H. Muhamad Kholil, M.Pd.I",
+    20,
+    yTtd+50
 );
 
 doc.setFont("times","normal");
 doc.text(
-"NIP. 197003231998031008",
-15,
-yTtd+57
+    "NIP. 197003231998031008",
+    20,
+    yTtd+57
 );
 
 /* KETUA SPMB */
-
 doc.text(
-"Bunga Mayang, 06 Juni 2026",
-120,
-yTtd
+    "Bunga Mayang, 06 Juni 2026",
+    125,
+    yTtd
 );
 
 doc.text(
-"Ketua Pelaksana SPMB",
-120,
-yTtd+8
+    "Ketua Pelaksana SPMB",
+    125,
+    yTtd+8
 );
 
 if(ttdKetuaBase64){
-doc.addImage(
-ttdKetuaBase64,
-"PNG",
-120,
-yTtd+10,
-45,
-30
-);
+    doc.addImage(
+        ttdKetuaBase64,
+        "PNG",
+        125,
+        yTtd+12,
+        35,
+        28
+    );
 }
 
 doc.setFont("times","bold");
 doc.text(
-"Sumaryono, S.Pd.T",
-120,
-yTtd+50
+    "Sumaryono, S.Pd.T",
+    125,
+    yTtd+50
 );
 
 doc.setFont("times","normal");
 doc.text(
-"NIP. 198606052022211039",
-120,
-yTtd+57
+    "NIP. 198606052022211039",
+    125,
+    yTtd+57
 );
 
 const safeNama =
