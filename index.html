@@ -843,18 +843,15 @@ y
 
 y += 5;
 
-doc.setFont("times");
+doc.setFont("times","normal");
+
+const isiInfo =
+"Kepada peserta yang dinyatakan diterima diwajibkan untuk mengikuti Test Minat dan Bakat / Test Kejuruan yang akan dilaksanakan pada:";
+
 doc.text(
-"Kepada peserta yang dinyatakan diterima diwajibkan untuk mengikuti Test minat dan bakat / Test kejuruan",
-20,
-y
-);
-   
-doc.setFont("times");
-doc.text(
-"yang akan dilaksanakan pada :"
-20,
-y
+    doc.splitTextToSize(isiInfo, 170),
+    20,
+    y
 );
 
 y += 5;
