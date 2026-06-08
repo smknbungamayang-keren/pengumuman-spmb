@@ -829,7 +829,7 @@ doc.text(nisn,65,y);
 
 y += 5;
 
-doc.text("TEMPAT, TANGGAL LAHIR",20,y);
+doc.text("Tempat,Tgl lahir",20,y);
 doc.text(":",60,y);
 doc.text(tempat_tanggal_lahir,65,y);
    
@@ -903,31 +903,31 @@ y += 5;
 doc.text("Tempat",20,y);
 doc.text(": SMK Negeri 1 Bunga Mayang",60,y);
 
-y += 3;
-
+y += 5;
+doc.setFontSize(10);
 doc.text("Berkas yang harus dibawa saat daftar ulang :",20,y);
-y += 6;
+y += 4;
 
 doc.text("1. Fotocopy Ijazah / Surat Keterangan Lulus : 5 Lembar",20,y);
-y += 5;
+y += 4;
 
 doc.text("2. Fotocopy Kartu Keluarga : 5 Lembar",20,y);
-y += 5;
+y += 4;
 
 doc.text("3. Fotocopy Akta Kelahiran : 5 Lembar",20,y);
-y += 5;
+y += 4;
 
 doc.text("4. Fotocopy KTP Orang Tua : Masing-masing 5 Lembar",20,y);
-y += 5;
+y += 4;
 
 doc.text("5. Pas Photo Ukuran 3x4 : 5 Lembar",20,y);
-y += 5;
+y += 4;
 
 doc.text("6. Fotocopy KIP/PKH/KKS : 5 Lembar (Jika Ada)",20,y);
-y += 5;
+y += 4;
 
 doc.text("7. Map Biola sesuai jurusan",20,y);
-y += 5;
+y += 4;
 
 doc.text("* MPLB: Merah | DKV: Kuning | TJKT: Biru | TSM: Hijau",20,y);
    
@@ -944,7 +944,7 @@ if (y > 190) {
     y = 30;
 }
 
-const yTtd = y + 10;
+const yTtd = y + 8;
 
 /* KEPALA SEKOLAH */
 doc.text("Mengetahui,",30,yTtd);
@@ -955,7 +955,7 @@ if(ttdKepsekBase64){
         ttdKepsekBase64,
         "PNG",
         20,
-        yTtd+7,
+        yTtd+5,
         40,
         28
     );
@@ -993,7 +993,7 @@ if(ttdKetuaBase64){
         ttdKetuaBase64,
         "PNG",
         125,
-        yTtd+7,
+        yTtd+5,
         35,
         28
     );
