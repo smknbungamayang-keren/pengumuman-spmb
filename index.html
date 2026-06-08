@@ -643,7 +643,7 @@ ${siswa.jurusan}
 
 
 <button class="btn"
-onclick="downloadSurat('${siswa.nama}','${siswa.nisn}','${siswa.asal_sekolah}')">
+onclick="downloadSurat('${siswa.nama}','${siswa.nisn}','${siswa.asal_sekolah}','${siswa.jurusan}')">
 DOWNLOAD SURAT KETERANGAN DITERIMA
 </button>
 
@@ -747,7 +747,7 @@ async function getBase64Image(url) {
 /* =========================
    DOWNLOAD SURAT
 ========================= */
-async function downloadSurat(nama,nisn,asalSekolah){
+async function downloadSurat(nama,nisn,asalSekolah,jurusan){
 
 try{
 
