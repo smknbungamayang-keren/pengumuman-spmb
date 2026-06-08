@@ -828,12 +828,12 @@ doc.splitTextToSize(asalSekolah,120),
 y
 );
 
-y += 10;
+y += 8;
 
 doc.setFont("times","bold");
 doc.text("DINYATAKAN DITERIMA",20,y);
 
-y += 10;
+y += 8;
 
 doc.setFont("times","normal");
 doc.text(
@@ -850,19 +850,19 @@ doc.text(
 y
 );
 
-y += 10;
+y += 8;
 
 doc.setFont("times","bold");
 doc.text("DI JURUSAN",20,y);
 doc.text(":",60,y);
 doc.text(jurusan,65,y);
    
-y += 10;
+y += 8;
 
 doc.setFont("times","normal");
 
 const isiInfo =
-"Kepada peserta yang dinyatakan diterima diwajibkan untuk mengikuti Test Minat dan Bakat / Test Kejuruan yang akan dilaksanakan pada:";
+"Kepada peserta yang dinyatakan diterima diwajibkan melakukan daftar ulang sesuai jadwal berikut:";
 
 doc.text(
     doc.splitTextToSize(isiInfo, 170),
@@ -870,12 +870,12 @@ doc.text(
     y
 );
 
-y += 10;
+y += 8;
 
 doc.setFont("times","normal");
 
 doc.text("Hari / Tanggal",20,y);
-doc.text(": Senin, 08 Juni 2026",60,y);
+doc.text(": Rabu, 11 s/d 13 Juni 2026",60,y);
 
 y += 5;
 
@@ -887,7 +887,7 @@ y += 5;
 doc.text("Tempat",20,y);
 doc.text(": SMK Negeri 1 Bunga Mayang",60,y);
 
-y += 10;
+y += 8;
 
 doc.text(
 "Demikian pengumuman ini disampaikan untuk diketahui dan dilaksanakan sebagaimana mestinya.",
@@ -900,7 +900,7 @@ if (y > 190) {
     y = 30;
 }
 
-const yTtd = y + 15;
+const yTtd = y + 10;
 
 /* KEPALA SEKOLAH */
 doc.text("Mengetahui,",30,yTtd);
