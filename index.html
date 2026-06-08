@@ -637,7 +637,7 @@ ${siswa.status}
 </p>
 
 <p>
-<b>Status :</b>
+<b>Jurusan :</b>
 ${siswa.jurusan}
 </p>
 
@@ -686,7 +686,7 @@ ${siswa.asal_sekolah}
 </p>
 
 <p>
-<b>Asal Sekolah :</b>
+<b>jurusan :</b>
 ${siswa.jurusan}
 </p>
 `;
@@ -853,7 +853,8 @@ y
 y += 10;
 
 doc.setFont("times","bold");
-doc.text("DI JURUSAN : ",20,y);
+doc.text("DI JURUSAN",20,y);
+doc.text(":",60,y);
 doc.text(jurusan,60,y);
    
 y += 10;
