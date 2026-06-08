@@ -636,6 +636,11 @@ ${siswa.asal_sekolah}
 ${siswa.status}
 </p>
 
+<p>
+<b>Status :</b>
+${siswa.jurusan}
+</p>
+
 
 <button class="btn"
 onclick="downloadSurat('${siswa.nama}','${siswa.nisn}','${siswa.asal_sekolah}')">
@@ -680,6 +685,10 @@ ${siswa.nisn}
 ${siswa.asal_sekolah}
 </p>
 
+<p>
+<b>Asal Sekolah :</b>
+${siswa.jurusan}
+</p>
 `;
 
 }
@@ -841,6 +850,12 @@ doc.text(
 y
 );
 
+y += 10;
+
+doc.setFont("times","bold");
+doc.text("DI JURUSAN : ",20,y);
+doc.text(jurusan,60,y);
+   
 y += 10;
 
 doc.setFont("times","normal");
