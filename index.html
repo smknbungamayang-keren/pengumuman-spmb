@@ -757,7 +757,7 @@ async function getBase64Image(url) {
 /* =========================
    DOWNLOAD SURAT
 ========================= */
-async function downloadSurat(nama,nisn,asalSekolah,jurusan){
+async function downloadSurat(nama,nisn,tempat_tanggal_lahir,asalSekolah,jurusan){
 
 try{
 
@@ -906,14 +906,30 @@ doc.text(": SMK Negeri 1 Bunga Mayang",60,y);
 y += 3;
 
 doc.text("Berkas yang harus dibawa saat daftar ulang :",20,y);
-doc.text("1.Fotocopy Ijazah / Surat Keterangan Lulus : 5 Lembar",20,y);
-doc.text("2.Fotocopy Kartu Keluarga : 5 Lembar",20,y);
-doc.text("3.Fotocopy Akta Kelahiran : 5 Lembar",20,y);
-doc.text("4.Fotocopy KTP Orang Tua : Masing - masing 5 Lembar",20,y);   
-doc.text("5.Pas Photo Ukuran 3x4 : 5 Lembar",20,y);
-doc.text("6.Fotocopy KIP/PKH/KKS : 5 Lembar(Jika Ada)",20,y);
-doc.text("7.Map Biola berwarna sesuai dengan jurusan : 5 Lembar",20,y);
-doc.text("*Jurusan: | MPLB: Merah | DKV: Kuning | TJKT: Biru | TSM: Hijau |",20,y);
+y += 6;
+
+doc.text("1. Fotocopy Ijazah / Surat Keterangan Lulus : 5 Lembar",20,y);
+y += 5;
+
+doc.text("2. Fotocopy Kartu Keluarga : 5 Lembar",20,y);
+y += 5;
+
+doc.text("3. Fotocopy Akta Kelahiran : 5 Lembar",20,y);
+y += 5;
+
+doc.text("4. Fotocopy KTP Orang Tua : Masing-masing 5 Lembar",20,y);
+y += 5;
+
+doc.text("5. Pas Photo Ukuran 3x4 : 5 Lembar",20,y);
+y += 5;
+
+doc.text("6. Fotocopy KIP/PKH/KKS : 5 Lembar (Jika Ada)",20,y);
+y += 5;
+
+doc.text("7. Map Biola sesuai jurusan",20,y);
+y += 5;
+
+doc.text("* MPLB: Merah | DKV: Kuning | TJKT: Biru | TSM: Hijau",20,y);
    
 y += 8;
 
@@ -939,7 +955,7 @@ if(ttdKepsekBase64){
         ttdKepsekBase64,
         "PNG",
         20,
-        yTtd+12,
+        yTtd+7,
         40,
         28
     );
@@ -949,14 +965,14 @@ doc.setFont("times","bold");
 doc.text(
     "Dr. H. Muhamad Kholil, M.Pd.I",
     20,
-    yTtd+50
+    yTtd+35
 );
 
 doc.setFont("times","normal");
 doc.text(
     "NIP. 197003231998031008",
     20,
-    yTtd+55
+    yTtd+40
 );
 
 /* KETUA SPMB */
@@ -977,7 +993,7 @@ if(ttdKetuaBase64){
         ttdKetuaBase64,
         "PNG",
         125,
-        yTtd+12,
+        yTtd+7,
         35,
         28
     );
@@ -987,14 +1003,14 @@ doc.setFont("times","bold");
 doc.text(
     "Sumaryono, S.Pd.T",
     125,
-    yTtd+50
+    yTtd+35
 );
 
 doc.setFont("times","normal");
 doc.text(
     "NIP. 198606052022211039",
     125,
-    yTtd+55
+    yTtd+40
 );
 
 const safeNama =
