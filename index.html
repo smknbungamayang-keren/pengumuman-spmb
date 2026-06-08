@@ -627,6 +627,11 @@ ${siswa.nisn}
 </p>
 
 <p>
+<b>Tempat,Tanggal Lahir :</b>
+${siswa.tempat_tanggal_lahir}
+</p>
+
+<p>
 <b>Asal Sekolah :</b>
 ${siswa.asal_sekolah}
 </p>
@@ -643,7 +648,7 @@ ${siswa.jurusan}
 
 
 <button class="btn"
-onclick="downloadSurat('${siswa.nama}','${siswa.nisn}','${siswa.asal_sekolah}','${siswa.jurusan}')">
+onclick="downloadSurat('${siswa.nama}','${siswa.nisn}','${siswa.tempat_tanggal_lahir}','${siswa.asal_sekolah}','${siswa.jurusan}')">
 DOWNLOAD SURAT KETERANGAN DITERIMA
 </button>
 
@@ -678,6 +683,11 @@ ${siswa.nama}
 <p>
 <b>NISN :</b>
 ${siswa.nisn}
+</p>
+
+<p>
+<b>Tempat, Tanggal Lahir :</b>
+${siswa.tempat_tanggal_lahir}
 </p>
 
 <p>
@@ -787,7 +797,7 @@ doc.text("PENGUMUMAN",105,50,{align:"center"});
 doc.setFontSize(11);
 doc.text("Nomor : 421.5/132/SMKN.1-BM/2026",105,57,{align:"center"});
 
-doc.setFontSize(14);
+doc.setFontSize(11);
 doc.text("TENTANG",105,67,{align:"center"});
 doc.text("HASIL SELEKSI SISTEM PENERIMAAN MURID BARU (SPMB)",105,75,{align:"center"});
 doc.text("SMK NEGERI 1 BUNGA MAYANG",105,82,{align:"center"});
@@ -817,6 +827,12 @@ doc.text("NISN",20,y);
 doc.text(":",60,y);
 doc.text(nisn,65,y);
 
+y += 5;
+
+doc.text("TEMPAT, TANGGAL LAHIR",20,y);
+doc.text(":",60,y);
+doc.text(tempat_tanggal_lahir,65,y);
+   
 y += 5;
 
 doc.text("Asal Sekolah",20,y);
@@ -887,6 +903,18 @@ y += 5;
 doc.text("Tempat",20,y);
 doc.text(": SMK Negeri 1 Bunga Mayang",60,y);
 
+y += 3;
+
+doc.text("Berkas yang harus dibawa saat daftar ulang :",20,y);
+doc.text("1.Fotocopy Ijazah / Surat Keterangan Lulus : 5 Lembar",20,y);
+doc.text("2.Fotocopy Kartu Keluarga : 5 Lembar",20,y);
+doc.text("3.Fotocopy Akta Kelahiran : 5 Lembar",20,y);
+doc.text("4.Fotocopy KTP Orang Tua : Masing - masing 5 Lembar",20,y);   
+doc.text("5.Pas Photo Ukuran 3x4 : 5 Lembar",20,y);
+doc.text("6.Fotocopy KIP/PKH/KKS : 5 Lembar(Jika Ada)",20,y);
+doc.text("7.Map Biola berwarna sesuai dengan jurusan : 5 Lembar",20,y);
+doc.text("*Jurusan: | MPLB: Merah | DKV: Kuning | TJKT: Biru | TSM: Hijau |",20,y);
+   
 y += 8;
 
 doc.text(
